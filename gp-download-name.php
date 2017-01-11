@@ -18,7 +18,7 @@ class GP_Download_Name {
 	public function __construct() {
 
 		// The plugin requires GlotPress 2.3 or above.
-		if( version_compare( GP_VERSION, $this->required_version, '>=' ) ) {
+		if( version_compare( GP_VERSION, $this->required_version, '<' ) ) {
 			// Add the the filter action to GP.
 			add_action( 'gp_export_translations_filename', array( $this, 'gp_export_translations_filename' ), 10, 5 );
 		}
@@ -57,7 +57,7 @@ class GP_Download_Name {
 		update_option( 'gp-download-name', $template );
 	}
 
-	if( version_compare( GP_VERSION, $this->required_version, '>=' ) ) {
+	if( version_compare( GP_VERSION, $this->required_version, '<' ) ) {
 		$message = '<div class="notice notice-error is-dismissible"><p>' . sprintf( __('Error: GP Download Name requires GlotPress %s or above!' ), $this->required_version ) . '</p></div>' . $message;
 	}
 	
@@ -70,7 +70,9 @@ class GP_Download_Name {
 	<br />
 	
 	<form method="post" action="options-general.php?page=gp-download-name.php" >	
-		<?php _e( 'Tempate:' ); ?> <input type="text" name="gp-download-name" id="gp-download-name" size="45" value="<?php echo esc_attr( $template );?>"></input>
+		<?php _e( 'Tempate:' ); ?><br>
+		<input type="text" name="gp-download-name" id="gp-download-name" size="60" value="<?php echo esc_attr( $template );?>"></input><br>
+		<br>
 		<?php echo get_submit_button( __('Save'), 'primary', 'save', false ); ?>
 	</form>
 	
