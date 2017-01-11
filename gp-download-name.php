@@ -58,7 +58,7 @@ class GP_Download_Name {
 	}
 
 	if( version_compare( GP_VERSION, $this->required_version, '<' ) ) {
-		$message = '<div class="notice notice-error is-dismissible"><p>' . sprintf( __('Error: GP Download Name requires GlotPress %s or above!' ), $this->required_version ) . '</p></div>' . $message;
+		$message = '<div class="notice notice-error"><p>' . sprintf( __('Error: GP Download Name requires GlotPress %s or above!' ), $this->required_version ) . '</p></div>' . $message;
 	}
 	
 	?>	
