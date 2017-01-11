@@ -70,8 +70,11 @@ class GP_Download_Name {
 	
 	<ul>
 		<li><?php _e( '%project-name% - The project name (may include spaces and mixed case)' ); ?></li>
+		<li><?php _e( '%project-name-lowercase% - The project name converted to lower case (may include spaces)' ); ?></li>
 		<li><?php _e( '%project-name-underscores% - The project name, spaces replaced with underscores (mixed case)' ); ?></li>
+		<li><?php _e( '%project-name-underscores-lowercase% - The project name, spaces replaced with underscores and converted to lower case' ); ?></li>
 		<li><?php _e( '%project-name-dashes% - The project name, spaces replaced with dashes (mixed case)' ); ?></li>
+		<li><?php _e( '%project-name-dashes-lowercase% - The project name, spaces replaced with dashes and converted to lower case.' ); ?></li>
 		<li><?php _e( '%project-slug% - The project slug (no spaces, all lower case)' ); ?></li>
 		<li><?php _e( '%language-code% - The language code for the current request (ie "en" for english or "fr_CA" for French Canadian)' ); ?></li>
 	</ul>
@@ -95,8 +98,11 @@ class GP_Download_Name {
 
 		$replacements = array( 
 								'project-name' => $project->name,
+								'project-name-lowercase' => strtolower( $project->name ),
 								'project-name-underscores' => str_replace( ' ', '_', $project->name ),
+								'project-name-underscores-lowercase' => str_replace( ' ', '_', strtolower( $project->name ) ),
 								'project-name-dashes' => str_replace( ' ', '-', $project->name ),
+								'project-name-dashes-lowercase' => str_replace( ' ', '-', strtolower( $project->name ) ),
 								'project-slug' => $project->slug,
 								'language-code' => $fudge->get_language_code_string( $locale ),
 							);
