@@ -2,7 +2,7 @@
 /*
 Plugin Name: GP Download Name
 Plugin URI: http://glot-o-matic.com/gp-download-name
-Description: Use the project and locale as the download file name.
+Description: Use a customizable template for the download file name.
 Version: 0.5
 Author: Greg Ross
 Author URI: http://toolstack.com
@@ -62,7 +62,7 @@ class GP_Download_Name {
 	<br />
 	
 	<form method="post" action="options-general.php?page=gp-download-name.php" >	
-		<input type="text" name="gp-download-name" id="gp-download-name" size="45" value="<?php echo esc_attr( $template );?>"></input>
+		<?php _e( 'Tempate:' ); ?> <input type="text" name="gp-download-name" id="gp-download-name" size="45" value="<?php echo esc_attr( $template );?>"></input>
 		<?php echo get_submit_button( __('Save'), 'primary', 'save', false ); ?>
 	</form>
 	
