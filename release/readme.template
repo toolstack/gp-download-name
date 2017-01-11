@@ -18,6 +18,8 @@ A plugin for [GlotPress](https://wordpress.org/plugins/glotpress) that uses a cu
 
 Simply install, activate and configure via the WordPress settings menu.
 
+Note: this plugin requires GlotPress 2.3 or above.
+
 == Installation ==
 
 Install from the WordPress plugin directory.
