@@ -13,19 +13,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 class GP_Download_Name {
 	public $id = 'download-name';
+	private $required_version = '2.3';
 	
 	public function __construct() {
 
-		// Add the the filter action to GP.
-		add_action( 'gp_export_translations_filename', array( $this, 'gp_export_translations_filename' ), 10, 5 );
-
+		// The plugin requires GlotPress 2.3 or above.
+		if( version_compare( GP_VERSION, $this->required_version, '>=' ) ) {
+			// Add the the filter action to GP.
+			add_action( 'gp_export_translations_filename', array( $this, 'gp_export_translations_filename' ), 10, 5 );
+		}
+		
 		// Add the admin page to the WordPress settings menu.
 		add_action( 'admin_menu', array( $this, 'admin_menu' ), 10, 1 );
 	}
 
 	// This function adds the admin settings page to WordPress.
 	public function admin_menu() {
-		add_options_page( __('GP Donwload Name'), __('GP Download Name'), 'manage_options', basename( __FILE__ ), array( $this, 'admin_page' ) );
+		add_options_page( __('GP Download Name'), __('GP Download Name'), 'manage_options', basename( __FILE__ ), array( $this, 'admin_page' ) );
 	}
 
 	// This function displays the admin settings page in WordPress.
@@ -42,7 +46,7 @@ class GP_Download_Name {
 				update_option( 'gp-download-name', trim( $_POST['gp-download-name'] ) );
 				$message = '<div class="notice notice-success is-dismissible"><p>' . __('Settings saved.' ) . '</p></div>';
 			} else {
-				$message = '<div class="notice notice-error is-dismissible"><p>' . __('Blank templates are not allowed!.' ) . '</p></div>';
+				$message = '<div class="notice notice-error is-dismissible"><p>' . __('Blank templates are not allowed!' ) . '</p></div>';
 			}
 		}
 
@@ -51,6 +55,10 @@ class GP_Download_Name {
 	if( strlen( $template ) == 0 ) {
 		$template = '%project-name%-%language-code%';
 		update_option( 'gp-download-name', $template );
+	}
+
+	if( version_compare( GP_VERSION, $this->required_version, '>=' ) ) {
+		$message = '<div class="notice notice-error is-dismissible"><p>' . sprintf( __('Error: GP Download Name requires GlotPress %s or above!' ), $this->required_version ) . '</p></div>' . $message;
 	}
 	
 	?>	
