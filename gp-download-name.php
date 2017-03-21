@@ -3,7 +3,7 @@
 Plugin Name: GP Download Name
 Plugin URI: http://glot-o-matic.com/gp-download-name
 Description: Use a customizable template for the download file name.
-Version: 0.5
+Version: 0.6
 Author: Greg Ross
 Author URI: http://toolstack.com
 Tags: glotpress, glotpress plugin 
