@@ -18,7 +18,7 @@ class GP_Download_Name {
 	public function __construct() {
 
 		// The plugin requires GlotPress 2.3 or above.
-		if( version_compare( GP_VERSION, $this->required_version, '<' ) ) {
+		if( version_compare( GP_VERSION, $this->required_version, '>=' ) ) {
 			// Add the the filter action to GP.
 			add_action( 'gp_export_translations_filename', array( $this, 'gp_export_translations_filename' ), 10, 5 );
 		}
@@ -87,6 +87,9 @@ class GP_Download_Name {
 		<li><?php _e( '%project-name-dashes-lowercase% - The project name, spaces replaced with dashes and converted to lower case.' ); ?></li>
 		<li><?php _e( '%project-slug% - The project slug (no spaces, all lower case)' ); ?></li>
 		<li><?php _e( '%language-code% - The language code for the current request (ie "en" for english or "fr_CA" for French Canadian)' ); ?></li>
+		<li><?php _e( '%wp-locale% - The wp locale code for the current request (note this may result in a blank as not all locales have wp locale codes)' ); ?></li>
+		<li><?php _e( '%facebook-locale% - The Facebook locale code for the current request (note this may result in a blank as not all locales have Facebook locale codes)' ); ?></li>
+		<li><?php _e( '%google-code% - The Google locale code for the current request (note this may result in a blank as not all locales have Google locale codes)' ); ?></li>
 	</ul>
 
 	<p><?php _e( 'Note: The output file extension is automatically added, do not include a trailing period or other file extension.' ); ?></p>
@@ -115,6 +118,9 @@ class GP_Download_Name {
 								'project-name-dashes-lowercase' => str_replace( ' ', '-', strtolower( $project->name ) ),
 								'project-slug' => $project->slug,
 								'language-code' => $fudge->get_language_code_string( $locale ),
+								'wp-locale' => $locale->wp_locale,
+								'facebook-locale' => $locale->facebook_locale,
+								'google-code' => $locale->google_code,
 							);
 
 		foreach( $replacements as $key => $rep ) {
